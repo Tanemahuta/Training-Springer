@@ -1,0 +1,5 @@
+rootProject.name = 'springer-nature'
+include 'domain'
+include 'scala'
+include 'java'
+

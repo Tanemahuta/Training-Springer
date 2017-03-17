@@ -1,0 +1,25 @@
+/**
+ * Root build configuration.
+ * @author Tanemahuta
+ */
+
+allprojects { prj ->
+
+    prj.group = 'ch.eike.springer'
+
+    prj.repositories {
+        jcenter() // Use jcenter by default
+    }
+
+    // This will apply the defaults (see buildscripts/*Defaults.gradle) for each project
+    prj.plugins.whenPluginAdded { plg ->
+        final shortPluginName = plg.class.simpleName.replaceAll(/Plugin$/, '')
+        final defaultBuildscript = rootProject.file("buildscripts/${shortPluginName}Defaults.gradle")
+        if (defaultBuildscript.exists()) {
+            logger.info "Found default plugin configuration for {}, applying it: {}", prj, defaultBuildscript
+            prj.apply from: defaultBuildscript
+        }
+    }
+}
+
+
