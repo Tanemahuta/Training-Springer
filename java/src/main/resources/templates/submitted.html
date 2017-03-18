@@ -1,0 +1,11 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Springer Watermark - Submitted</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+Your Watermark has been submitted with ticket: <p th:text="${id}"/>
+<a th:href="@{/query(id=${id})}">Query it now</a>
+</body>
+</html>
