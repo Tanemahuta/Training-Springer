@@ -6,14 +6,41 @@ plugins {
 model {
     components {
         play {
-            platform play: '2.5.13', scala: '2.11'
+            platform play: playVersion, scala: scalaVersion, java: sourceCompatibility
+            injectedRoutesGenerator = true
         }
     }
 }
 
+// Make IntelliJ happy
+sourceSets {
+    main {
+        scala.srcDirs.clear()
+        scala.srcDir 'app'
+        resources.srcDir 'conf'
+        resources.srcDir 'app/assets'
+        resources.srcDir 'public'
+    }
+    test {
+        scala.srcDirs.clear()
+        scala.srcDir 'test'
+    }
+}
+
 dependencies {
+
     compile parent.project('domain')
-    compile 'com.typesafe.akka:akka-actor_2.11:2.4.17'
-    compile 'com.typesafe.akka:akka-slf4j_2.11:2.4.17'
-    testCompile 'com.typesafe.akka:akka-testkit_2.11:2.4.17'
+    play parent.project('domain')
+
+    play 'org.slf4j:slf4j-simple:1.7.25'
+
+    compile "com.typesafe.akka:akka-actor_${scalaVersion}:${akkaVersion}"
+    compile "com.typesafe.akka:akka-actor_${scalaVersion}:${akkaVersion}"
+    compile "com.typesafe.akka:akka-slf4j_${scalaVersion}:${akkaVersion}"
+
+    compile "com.typesafe.play:play_${scalaVersion}:${playVersion}"
+
+    testCompile "com.typesafe.akka:akka-testkit_${scalaVersion}:${akkaVersion}"
+    testCompile "com.typesafe.play:play-test_${scalaVersion}:${playVersion}"
+
 }

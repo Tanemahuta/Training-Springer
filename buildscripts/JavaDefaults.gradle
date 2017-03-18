@@ -1,0 +1,34 @@
+/**
+ * Default configuration for all java typed projects
+ * @author Tanemahuta
+ */
+
+// Set the source language level and the target compilation level to use java 8
+sourceCompatibility = targetCompatibility = 1.8
+
+// Dependency configuration
+dependencies {
+
+    // We use findbugs for @Nonnull, etc.
+    compile 'com.google.code.findbugs:jsr305:3.0.1'
+    compile 'commons-io:commons-io:2.5'
+
+    testCompile 'junit:junit:4.12'
+    testCompile 'pl.pragmatists:JUnitParams:1.0.6'
+}
+
+// Configure the project to provide the tests and source code as artifacts
+task testJar(type: Jar, dependsOn: tasks.testClasses) {
+    classifier = 'tests'
+    from sourceSets.test.output
+}
+// Configure the project to provide the sources as an artifact as well
+task sourceJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives testJar
+    archives sourceJar
+}

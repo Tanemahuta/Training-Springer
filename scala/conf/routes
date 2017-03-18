@@ -1,0 +1,3 @@
+POST /  controllers.WatermarkController.submit
+GET / controllers.WatermarkController.index
+GET /query controllers.WatermarkController.query

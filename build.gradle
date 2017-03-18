@@ -5,10 +5,25 @@
 
 allprojects { prj ->
 
-    prj.group = 'ch.eike.springer'
+    prj.group = 'controllers.springer.springer'
+
+    prj.buildscript.repositories {
+        jcenter() // Use jcenter by default
+        repositories {
+            maven {
+                name "typesafe-maven-release"
+                url "https://repo.typesafe.com/typesafe/maven-releases"
+            }
+        }
+    }
 
     prj.repositories {
-        jcenter() // Use jcenter by default
+        addAll(prj.buildscript.repositories)
+        ivy {
+            name "typesafe-ivy-release"
+            url "https://repo.typesafe.com/typesafe/ivy-releases"
+            layout "ivy"
+        }
     }
 
     // This will apply the defaults (see buildscripts/*Defaults.gradle) for each project
