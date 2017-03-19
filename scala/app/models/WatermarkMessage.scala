@@ -2,7 +2,7 @@ package models
 
 import java.util.UUID
 
-import ch.eike.spring.domain.DocumentWatermark
+import ch.eike.springer.domain.DocumentWatermark
 
 /**
   * Created by Tanemahuta on 18.03.17.

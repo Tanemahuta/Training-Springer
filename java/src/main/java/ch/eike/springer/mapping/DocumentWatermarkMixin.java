@@ -1,8 +1,8 @@
 package ch.eike.springer.mapping;
 
-import ch.eike.spring.domain.BookWatermark;
-import ch.eike.spring.domain.DocumentWatermark;
-import ch.eike.spring.domain.JournalWatermark;
+import ch.eike.springer.domain.BookWatermark;
+import ch.eike.springer.domain.DocumentWatermark;
+import ch.eike.springer.domain.JournalWatermark;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;

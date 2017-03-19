@@ -3,7 +3,7 @@ package models
 import java.util.UUID
 
 import akka.actor.{Actor, ActorLogging}
-import ch.eike.spring.domain.DocumentWatermark
+import ch.eike.springer.domain.DocumentWatermark
 import models.WatermarkSaveActor.StorageFunction
 
 object WatermarkSaveActor {

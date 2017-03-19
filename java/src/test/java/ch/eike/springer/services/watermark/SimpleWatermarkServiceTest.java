@@ -1,6 +1,6 @@
 package ch.eike.springer.services.watermark;
 
-import ch.eike.spring.domain.DocumentWatermark;
+import ch.eike.springer.domain.DocumentWatermark;
 import ch.eike.springer.configuration.ServiceConfiguration;
 import ch.eike.springer.services.DefaultTaskExecutor;
 import ch.eike.springer.watermark.Ticket;

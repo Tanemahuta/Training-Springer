@@ -1,6 +1,6 @@
 package ch.eike.springer.watermark;
 
-import ch.eike.spring.domain.DocumentWatermark;
+import ch.eike.springer.domain.DocumentWatermark;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

@@ -1,4 +1,4 @@
-package ch.eike.spring.domain;
+package ch.eike.springer.domain;
 
 /**
  * Enumeration for known topics.

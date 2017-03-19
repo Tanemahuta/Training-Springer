@@ -1,7 +1,7 @@
 package models
 
 import akka.actor.{Actor, ActorLogging}
-import ch.eike.spring.domain.{BookWatermark, DocumentWatermark, JournalWatermark, Topic}
+import ch.eike.springer.domain.{BookWatermark, DocumentWatermark, JournalWatermark, Topic}
 import play.api.Configuration
 
 import scala.collection.JavaConversions._

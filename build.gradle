@@ -2,7 +2,9 @@
  * Root build configuration.
  * @author Tanemahuta
  */
-
+plugins {
+    id 'idea'
+}
 allprojects { prj ->
 
     prj.group = 'controllers.springer.springer'

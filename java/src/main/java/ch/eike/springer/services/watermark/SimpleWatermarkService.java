@@ -1,9 +1,9 @@
 package ch.eike.springer.services.watermark;
 
-import ch.eike.spring.domain.BookWatermark;
-import ch.eike.spring.domain.DocumentWatermark;
-import ch.eike.spring.domain.JournalWatermark;
-import ch.eike.spring.domain.Topic;
+import ch.eike.springer.domain.BookWatermark;
+import ch.eike.springer.domain.DocumentWatermark;
+import ch.eike.springer.domain.JournalWatermark;
+import ch.eike.springer.domain.Topic;
 import ch.eike.springer.watermark.Ticket;
 import ch.eike.springer.watermark.WatermarkService;
 import lombok.extern.slf4j.Slf4j;

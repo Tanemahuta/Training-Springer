@@ -1,6 +1,6 @@
 package ch.eike.springer.controller;
 
-import ch.eike.spring.domain.DocumentWatermark;
+import ch.eike.springer.domain.DocumentWatermark;
 import ch.eike.springer.watermark.Ticket;
 import ch.eike.springer.watermark.WatermarkService;
 import org.springframework.beans.factory.annotation.Autowired;

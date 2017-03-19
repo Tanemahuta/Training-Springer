@@ -1,6 +1,6 @@
 package ch.eike.springer.mapping;
 
-import ch.eike.spring.domain.JournalWatermark;
+import ch.eike.springer.domain.JournalWatermark;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**

@@ -1,6 +1,6 @@
 package ch.eike.springer.mapping;
 
-import ch.eike.spring.domain.DocumentWatermark;
+import ch.eike.springer.domain.DocumentWatermark;
 import ch.eike.springer.configuration.JacksonConfiguration;
 import ch.eike.springer.watermark.Ticket;
 import com.fasterxml.jackson.databind.ObjectMapper;

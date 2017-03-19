@@ -1,4 +1,4 @@
-@import ch.eike.spring.domain.DocumentWatermark
+@import ch.eike.springer.domain.DocumentWatermark
 @(watermark: Option[DocumentWatermark])
 <p>@watermark.getOrElse("Watermark not yet ready")</p>
 <a href="javascript: window.location.reload(true)">Refresh</a>

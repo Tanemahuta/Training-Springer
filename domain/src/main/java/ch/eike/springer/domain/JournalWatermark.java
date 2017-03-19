@@ -1,4 +1,4 @@
-package ch.eike.spring.domain;
+package ch.eike.springer.domain;
 
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
