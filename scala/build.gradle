@@ -14,6 +14,9 @@ model {
 dependencies {
     play project(':domain')
     play 'org.slf4j:slf4j-simple:1.7.25'
+    playTest "org.scalatest:scalatest_${scalaVersion}:3.0.1"
+    playTest "com.typesafe.play:play-test_${scalaVersion}:${playVersion}"
+    playTest "com.typesafe.akka:akka-testkit_${scalaVersion}:${akkaVersion}"
 }
 
 
