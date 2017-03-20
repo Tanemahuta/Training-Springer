@@ -14,7 +14,10 @@ import play.api.test.Helpers._
  */
 class WatermarkControllerSpec extends PlaySpec with OneAppPerTest {
 
-  "HomeController GET" should {
+  val application = new GuiceApplicationBuilder().configure(Configuration("testdata.author" -> List("testAuthor"),
+    "testdata.titles" -> List("testTitle"), "testdata.topics" -> List("Business"))).build
+
+  "WatermarkController GET" should {
 
     "render the index page from a new instance of controller" in {
       val controller = new WatermarkController(app.configuration)
@@ -22,26 +25,8 @@ class WatermarkControllerSpec extends PlaySpec with OneAppPerTest {
 
       status(home) mustBe OK
       contentType(home) mustBe Some("text/html")
-      contentAsString(home) must include ("Welcome to Play")
+      contentAsString(home) must include ("Welcome to your submission.")
     }
 
-    "render the index page from the application" in {
-      val controller = app.injector.instanceOf[WatermarkController]
-      val home = controller.index().apply(FakeRequest())
-
-      status(home) mustBe OK
-      contentType(home) mustBe Some("text/html")
-      contentAsString(home) must include ("Welcome to Play")
-    }
-
-    "render the index page from the router" in {
-      // Need to specify Host header to get through AllowedHostsFilter
-      val request = FakeRequest(GET, "/").withHeaders("Host" -> "localhost")
-      val home = route(app, request).get
-
-      status(home) mustBe OK
-      contentType(home) mustBe Some("text/html")
-      contentAsString(home) must include ("Welcome to Play")
-    }
   }
 }

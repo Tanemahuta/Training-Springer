@@ -7,7 +7,7 @@ import akka.actor.{ActorSystem, Props}
 import akka.testkit.{ImplicitSender, TestKit}
 import org.scalatest.{BeforeAndAfterAll, Matchers, WordSpecLike}
 import play.api.inject.guice.GuiceApplicationBuilder
-import play.api.{Environment, Mode}
+import play.api.{Configuration, Environment, Mode}
 
 import scala.concurrent.duration._
 
@@ -16,7 +16,8 @@ import scala.concurrent.duration._
   */
 class WatermarkActorSpec extends TestKit(ActorSystem("Watermark")) with ImplicitSender with WordSpecLike with Matchers with BeforeAndAfterAll {
 
-  val application = new GuiceApplicationBuilder().in(Environment(new File("../../conf/"), this.getClass.getClassLoader, Mode.Test))
+  val application = new GuiceApplicationBuilder().configure(Configuration("testdata.author" -> List("testAuthor"),
+    "testdata.titles" -> List("testTitle"), "testdata.topics" -> List("Business"))).build
 
   override def afterAll {
     TestKit.shutdownActorSystem(system)
