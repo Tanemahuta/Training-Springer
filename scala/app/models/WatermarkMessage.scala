@@ -2,13 +2,26 @@ package models
 
 import java.util.UUID
 
-import ch.eike.springer.domain.DocumentWatermark
+/**
+  * The abstract trait of a watermark message.
+  */
+trait WatermarkMessage {
+  /**
+    * the id of the ticket
+    */
+  val id : UUID
+}
 
 /**
-  * Created by Tanemahuta on 18.03.17.
+  * A message for submitting a watermark.
+  * @param id the id of the ticket
   */
-trait WatermarkMessage;
+case class SubmitWatermark(override val id: UUID) extends WatermarkMessage
 
-case class SubmitWatermark(id: UUID) extends WatermarkMessage;
-case class WatermarkComplete(id: UUID, watermark: DocumentWatermark) extends WatermarkMessage;
+/**
+  * A message for a completed watermark.
+  * @param id the id of the ticket
+  * @param watermark the watermark created
+  */
+case class WatermarkComplete(override val id: UUID, watermark: DocumentWatermark) extends WatermarkMessage
 

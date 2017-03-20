@@ -1,26 +1,42 @@
-// Apply our plugins (java, spring boot and lombok)
+/**
+ * Root build configuration.
+ * @author Tanemahuta
+ */
 plugins {
-    id 'java'
-    id 'jacoco'
-    id 'org.springframework.boot' version '1.5.2.RELEASE'
+    id 'idea'
 }
+allprojects { prj ->
 
+    prj.group = 'controllers.springer.springer'
 
-// Dependency configuration
-dependencies {
-
-    compile parent.project('domain')
-    compile('org.springframework.boot:spring-boot-starter-thymeleaf') {
-        exclude module: 'spring-boot-starter-tomcat'
+    prj.buildscript.repositories {
+        jcenter() // Use jcenter by default
+        repositories {
+            maven {
+                name "typesafe-maven-release"
+                url "https://repo.typesafe.com/typesafe/maven-releases"
+            }
+        }
     }
-    compile 'org.springframework.boot:spring-boot-starter-jetty'
-    compile 'org.springframework.boot:spring-boot-starter-actuator'
 
-    testCompile 'org.springframework.boot:spring-boot-starter-test'
-    testCompile 'org.skyscreamer:jsonassert:1.4.0'
+    prj.repositories {
+        addAll(prj.buildscript.repositories)
+        ivy {
+            name "typesafe-ivy-release"
+            url "https://repo.typesafe.com/typesafe/ivy-releases"
+            layout "ivy"
+        }
+    }
 
+    // This will apply the defaults (see buildscripts/*Defaults.gradle) for each project
+    prj.plugins.whenPluginAdded { plg ->
+        final shortPluginName = plg.class.simpleName.replaceAll(/Plugin$/, '')
+        final defaultBuildscript = rootProject.file("buildscripts/${shortPluginName}Defaults.gradle")
+        if (defaultBuildscript.exists()) {
+            logger.info "Found default plugin configuration for {}, applying it: {}", prj, defaultBuildscript
+            prj.apply from: defaultBuildscript
+        }
+    }
 }
 
-tasks.bootRun.with {
-    args += ["-Dmanagement.security.enabled=false"]
-}
+

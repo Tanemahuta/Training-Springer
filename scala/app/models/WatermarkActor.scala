@@ -1,7 +1,6 @@
 package models
 
 import akka.actor.{Actor, ActorLogging}
-import ch.eike.springer.domain.{BookWatermark, DocumentWatermark, JournalWatermark, Topic}
 import play.api.Configuration
 
 import scala.collection.JavaConversions._
@@ -15,7 +14,7 @@ class WatermarkActor(val config: Configuration) extends Actor with ActorLogging 
 
   private val authors = readTestData("authors")
   private val titles = readTestData("titles")
-  private val topics = readTestData("topics") map (s => if (s.trim.isEmpty) None else Option(Topic.valueOf(s)))
+  private val topics = readTestData("topics") map (s => if (s.trim.isEmpty) None else Option(Topic.withName(s)))
 
   override def receive: Receive = {
     // NOTE I know this is kind of lame, but it might present that I've understood how actors work
@@ -33,7 +32,7 @@ class WatermarkActor(val config: Configuration) extends Actor with ActorLogging 
     val title = randomFrom(titles)
     val topic = randomFrom(topics)
 
-    topic map (t => new BookWatermark(author, title, t)) getOrElse new JournalWatermark(author, title)
+    topic map (t => BookWatermark(author, title, t)) getOrElse JournalWatermark(author, title)
   }
 
   /**
@@ -45,6 +44,11 @@ class WatermarkActor(val config: Configuration) extends Actor with ActorLogging 
     */
   private def randomFrom[T: ClassTag](src: List[T]): T = src(Random.nextInt(src.size))
 
+  /**
+    * Read the provided configuration path into a list of [[String]]s.
+    * @param path the path to be read
+    * @return the read list
+    */
   private def readTestData(path : String) = asScalaBuffer(config.getList(s"testdata.$path").get.unwrapped()).toList.map(a => a.toString)
 
 }

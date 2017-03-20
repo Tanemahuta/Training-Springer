@@ -1,0 +1,26 @@
+// Apply our plugins (java, spring boot and lombok)
+plugins {
+    id 'java'
+    id 'jacoco'
+    id 'org.springframework.boot' version '1.5.2.RELEASE'
+}
+
+
+// Dependency configuration
+dependencies {
+
+    compile parent.project('domain')
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf') {
+        exclude module: 'spring-boot-starter-tomcat'
+    }
+    compile 'org.springframework.boot:spring-boot-starter-jetty'
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
+
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testCompile 'org.skyscreamer:jsonassert:1.4.0'
+
+}
+
+tasks.bootRun.with {
+    args += ["-Dmanagement.security.enabled=false"]
+}
