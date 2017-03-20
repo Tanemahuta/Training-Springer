@@ -1,13 +1,12 @@
 package models
 
-import java.io.File
 import java.util.UUID
 
 import akka.actor.{ActorSystem, Props}
 import akka.testkit.{ImplicitSender, TestKit}
 import org.scalatest.{BeforeAndAfterAll, Matchers, WordSpecLike}
+import play.api.Configuration
 import play.api.inject.guice.GuiceApplicationBuilder
-import play.api.{Configuration, Environment, Mode}
 
 import scala.concurrent.duration._
 
